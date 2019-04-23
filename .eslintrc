@@ -1,0 +1,7 @@
+{
+  "extends": "airbnb",
+  "overrides": [{
+    "files": ["test.js"],
+    "env": {"mocha": true}
+  }]
+}
