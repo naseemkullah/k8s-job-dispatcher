@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/naseemkullah/k8s-job-dispatcher#readme",
   "dependencies": {
+    "@opencensus/exporter-jaeger": "0.0.14",
+    "@opencensus/nodejs": "0.0.14",
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
-    "jaeger-client": "^3.15.0",
     "joi": "^14.3.1",
     "kubernetes-client": "^8.3.0",
     "pino": "^5.12.6"

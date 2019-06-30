@@ -1,6 +1,12 @@
+const { JaegerTraceExporter } = require('@opencensus/exporter-jaeger');
+const tracing = require('@opencensus/nodejs');
+
+const exporter = new JaegerTraceExporter({ serviceName: 'k8s-job-dispatcher' });
+tracing.registerExporter(exporter).start();
+
 const express = require('express');
-const jobs = require('./routes/jobs');
 const { expressPino, pino } = require('./lib/logger');
+const jobs = require('./routes/jobs');
 
 const app = express();
 
