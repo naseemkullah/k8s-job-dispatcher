@@ -5,22 +5,22 @@ const exporter = new JaegerTraceExporter({ serviceName: 'k8s-job-dispatcher' });
 tracing.registerExporter(exporter).start();
 
 const express = require('express');
-const { expressPino, pino } = require('./lib/logger');
+const { expressLogger, logger } = require('./lib/logger');
 const jobs = require('./routes/jobs');
 
 const app = express();
 
 app.use(express.json());
-app.use(expressPino);
+app.use(expressLogger);
 app.get('/healthz', (req, res) => res.status(200).end());
 app.use('/api/jobs', jobs);
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  pino.error(err);
+  logger.error(err);
   res.status(err.code).send(err.message);
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => pino.info(`Listening on port ${port}...`));
+app.listen(port, () => logger.info(`Listening on port ${port}...`));
 
 module.exports = app; // for testing

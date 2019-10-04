@@ -1,7 +1,7 @@
 const express = require('express');
 const { Client, KubeConfig } = require('kubernetes-client');
 const Request = require('kubernetes-client/backends/request');
-const { pino } = require('../lib/logger');
+const { logger } = require('../lib/logger');
 
 const router = express.Router();
 
@@ -63,10 +63,10 @@ router.post('/', async (req, res, next) => {
         },
       },
     });
-    pino.info(job);
+    logger.info(job);
     res.send(job);
   } catch (err) {
-    pino.error(err);
+    logger.error(err);
     next(err);
   }
 });
