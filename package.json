@@ -18,18 +18,18 @@
   },
   "homepage": "https://github.com/naseemkullah/k8s-job-dispatcher#readme",
   "dependencies": {
-    "@opencensus/exporter-jaeger": "0.0.14",
-    "@opencensus/nodejs": "0.0.14",
+    "@opencensus/exporter-jaeger": "0.0.17",
+    "@opencensus/nodejs": "0.0.17",
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
     "joi": "^14.3.1",
-    "kubernetes-client": "^8.3.0",
-    "pino": "^5.12.6"
+    "kubernetes-client": "^8.3.4",
+    "pino": "^5.13.4"
   },
   "devDependencies": {
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.1",
     "nyc": "^14.1.1",
-    "pino-pretty": "^3.2.0",
+    "pino-pretty": "^3.2.1",
     "should": "^13.2.3",
     "supertest": "^4.0.2"
   }
