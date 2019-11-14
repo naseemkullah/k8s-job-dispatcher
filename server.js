@@ -12,8 +12,11 @@ app.get('/healthz', (req, res) => res.status(200).end());
 app.use('/api/jobs', jobs);
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  const spanContext = opentelemetry.getTracer().getCurrentSpan().context();
-  logger.error({ err, spanContext }, `${err}, traceId: ${spanContext.traceId}`);
+  const spanContext = opentelemetry
+    .getTracer()
+    .getCurrentSpan()
+    .context();
+  logger.error({ err, spanContext }, `${err}`);
   res.status(err.code).send(err.message);
 });
 
