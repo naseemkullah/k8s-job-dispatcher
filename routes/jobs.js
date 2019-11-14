@@ -26,43 +26,49 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:namespace', async (req, res) => {
-  const jobs = await client.apis.batch.v1.namespaces(req.params.namespace).jobs.get();
+  const jobs = await client.apis.batch.v1
+    .namespaces(req.params.namespace)
+    .jobs.get();
   res.send(jobs);
 });
 
 router.get('/:namespace/:name', async (req, res) => {
-  const jobStatus = await client.apis.batch.v1.namespaces(req.params.namespace)
-    .jobs(req.params.name).status.get();
+  const jobStatus = await client.apis.batch.v1
+    .namespaces(req.params.namespace)
+    .jobs(req.params.name)
+    .status.get();
   res.send(jobStatus);
 });
 
 router.post('/', async (req, res, next) => {
   try {
-    const job = await client.apis.batch.v1.namespaces(req.body.namespace).jobs.post({
-      body: {
-        apiVersion: 'batch/v1',
-        kind: 'Job',
-        metadata: {
-          generateName: `${req.body.name}-`,
-          namespace: req.body.namespace,
-        },
-        spec: {
-          template: {
-            spec: {
-              containers: [
-                {
-                  name: req.body.name,
-                  image: req.body.image,
-                  command: req.body.command,
-                  args: req.body.args,
-                },
-              ],
-              restartPolicy: 'OnFailure',
+    const job = await client.apis.batch.v1
+      .namespaces(req.body.namespace)
+      .jobs.post({
+        body: {
+          apiVersion: 'batch/v1',
+          kind: 'Job',
+          metadata: {
+            generateName: `${req.body.name}-`,
+            namespace: req.body.namespace,
+          },
+          spec: {
+            template: {
+              spec: {
+                containers: [
+                  {
+                    name: req.body.name,
+                    image: req.body.image,
+                    command: req.body.command,
+                    args: req.body.args,
+                  },
+                ],
+                restartPolicy: 'OnFailure',
+              },
             },
           },
         },
-      },
-    });
+      });
     logger.info(job);
     res.send(job);
   } catch (err) {
