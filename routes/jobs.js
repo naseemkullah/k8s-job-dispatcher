@@ -66,7 +66,6 @@ router.post('/', async (req, res, next) => {
     logger.info(job);
     res.send(job);
   } catch (err) {
-    logger.error(err);
     next(err);
   }
 });
