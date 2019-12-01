@@ -7,10 +7,10 @@
 
 ## Why though?
 
-While the server itself does not serve much purpose, it is well instrumented and can serve as an example for other projects.
+While the server itself is somewhat useless, it is very well instrumented and can be a reference for other projects.
 
 ### Instrumentation
 
-[Logs](./lib/logger.js)
-[Traces](./lib/tracer.js)
-Coming soon: Metrics
+* [Logs](./lib/logger.js)
+* [Traces](./lib/tracer.js)
+* Coming soon: Metrics
