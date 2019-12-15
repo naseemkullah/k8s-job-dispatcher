@@ -20,6 +20,7 @@
   "dependencies": {
     "@opentelemetry/core": "^0.3.0",
     "@opentelemetry/exporter-jaeger": "^0.3.0",
+    "@opentelemetry/exporter-prometheus": "^0.3.0",
     "@opentelemetry/metrics": "^0.3.0",
     "@opentelemetry/node": "^0.3.0",
     "@opentelemetry/plugin-http": "^0.3.0",

@@ -3,12 +3,14 @@ const express = require('express');
 const opentelemetry = require('@opentelemetry/core');
 const { expressLogger, logger } = require('./lib/logger');
 const jobs = require('./routes/jobs');
+const { countAllRequests } = require('./lib/metrics');
 
 const app = express();
 
 app.use(express.json());
 app.use(expressLogger);
 app.get('/healthz', (req, res) => res.status(200).end());
+app.use(countAllRequests());
 app.use('/api/jobs', jobs);
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
