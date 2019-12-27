@@ -1,6 +1,5 @@
-require('./lib/tracer');
 const express = require('express');
-const opentelemetry = require('@opentelemetry/core');
+const tracer = require('./lib/tracer');
 const { expressLogger, logger } = require('./lib/logger');
 const jobs = require('./routes/jobs');
 const { countAllRequests } = require('./lib/metrics');
@@ -14,8 +13,7 @@ app.use(countAllRequests());
 app.use('/api/jobs', jobs);
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  const spanContext = opentelemetry
-    .getTracer()
+  const spanContext = tracer
     .getCurrentSpan()
     .context();
   logger.error({ err, spanContext }, `${err}`);
