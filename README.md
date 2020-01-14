@@ -12,7 +12,7 @@
 
 `curl http://localhost:3000/api/jobs`
 
-## Why though?
+## Why
 
 While the server itself is somewhat useless, it is well instrumented and can be a reference for other projects.
 
