@@ -20,4 +20,3 @@ While the server itself is somewhat useless, it is well instrumented and can be 
 
 * [Logs](./lib/logger.js)
 * [Traces](./lib/tracer.js)
-* [Metrics](./lib/metrics.js)
