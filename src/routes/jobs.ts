@@ -1,27 +1,15 @@
-const express = require('express');
-const { Client, KubeConfig } = require('kubernetes-client');
-const Request = require('kubernetes-client/backends/request');
-const { logger } = require('../lib/logger');
+import * as express from 'express';
+import * as ApiClient from 'kubernetes-client';
+
+const Client = ApiClient.Client1_13;
+const client = new Client({version: '1.13'});
+
+import logger from '../lib/logger';
 
 const router = express.Router();
 
-let client;
-const kubeconfig = new KubeConfig();
-
-try {
-  kubeconfig.loadFromCluster();
-  const backend = new Request({ kubeconfig });
-  client = new Client({ backend, version: '1.13' });
-} catch (error) {
-  kubeconfig.loadFromDefault();
-  const backend = new Request({ kubeconfig });
-  client = new Client({ backend, version: '1.13' });
-}
-const awaitClient = async () => client.loadSpec();
-awaitClient();
-
 router.get('/', async (req, res) => {
-  const jobs = await client.apis.batch.v1.namespaces().jobs.get();
+  const jobs = await client.apis.batch.v1.namespaces('').jobs.get();
   res.send(jobs);
 });
 
@@ -76,4 +64,4 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;
