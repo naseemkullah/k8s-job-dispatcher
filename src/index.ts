@@ -42,7 +42,7 @@ app.use(
     if (span) {
       spanContext = span.context();
     }
-    logger.error({err, spanContext}, `${err}`);
+    logger.error({err, spanContext}, err.message);
     res.status(err.code).send(err.message);
     next();
   }
