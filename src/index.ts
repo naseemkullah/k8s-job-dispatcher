@@ -1,6 +1,6 @@
+import tracer from './lib/tracer';
 import * as express from 'express';
 import jobs from './routes/jobs';
-import tracer from './lib/tracer';
 import logger from './lib/logger';
 import * as pinoHttp from 'pino-http';
 
