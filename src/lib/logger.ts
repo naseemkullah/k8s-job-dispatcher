@@ -1,7 +1,5 @@
 import * as pino from 'pino';
 
-const dev = !['staging', 'production'].includes(process.env.NODE_ENV || '');
-
 export default pino({
   name: 'k8s-job-dispatcher',
   formatters: {
@@ -12,7 +10,7 @@ export default pino({
       return {name: bindings.name};
     },
   },
-  prettyPrint: dev,
-  timestamp: dev ? true : () => `,"eventTime":${Date.now() / 1000.0}`,
+  prettyPrint: process.env.NODE_ENV === undefined,
+  timestamp: () => `,"eventTime":${Date.now() / 1000.0}`,
   level: process.env.LOG_LEVEL || 'info',
 });
